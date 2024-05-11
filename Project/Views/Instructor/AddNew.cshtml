@@ -1,0 +1,48 @@
+﻿@model InstructorWithListOfDeptAndCourse
+@{
+    ViewData["Title"] = "AddNew";
+
+}
+
+<h1>Add New Insructor</h1>
+<a href="/Instructor/index" class="btn btn-outline-primary mb-3">BackTo List</a>
+<form method="post" action="/instructor/SaveNew" class="form form-control">
+    <label class="my-3"><strong>Name : </strong></label>
+    <input type="text" name="Name" value="@Model.Name" class="form form-control"/>
+    <label class="my-3"><strong>Image : </strong></label>
+    <input type="file" name="Image" value="@Model.Image" class="form form-control" />
+    <label class="my-3"><strong>Salary : </strong></label>
+    <input type="number" name="Salary" value="@Model.Salary" class="form form-control" />
+    <label class="my-3"><strong>Address : </strong></label>
+    <input type="text" name="Address" value="@Model.Address" class="form form-control" />
+    <label class="my-3"><strong>Department : </strong></label>
+    <select name="DepartmentId" id="DepartmentId" class="form form-control" onchange="LoadCrs()">
+        @foreach (var dept in Model.DeptList)
+        {
+            <option value="@dept.Id">@dept.Name</option>
+        }
+    </select>
+    <label class="my-3"><strong>Course : </strong></label>
+    <select name="CourseId" class="form form-control" id="CourseId">
+    </select>
+    <input style="margin-top:15px" type="submit" value="Create" class="btn btn-outline-primary" />
+</form>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function LoadCrs() {
+        $("#CourseId").html(""); 
+        var DeptId = $("#DepartmentId").val(); 
+        console.log(DeptId);
+        $.ajax({
+            url: "/instructor/GetCoursesByDepartment?DeptId=" + DeptId, 
+            success: function (result) {
+                console.log(result);
+                for (let item of result) {
+                    console.log(item);
+                    $("#CourseId").append("<option value='" + item.id + "'>" + item.name + "</option>"); // Append course options
+                }
+            }
+        });
+    }
+</script>
+

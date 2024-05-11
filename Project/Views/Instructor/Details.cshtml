@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+@model List<Instructor>
+<h3>Instructors In this Department</h3>
+<ul>
+    @foreach(Instructor ins in Model)
+    {
+        <li>@ins.Name</li>
+    }
+</ul>
+<a href="/instructor/index" class="btn btn-outline-primary">Back To List</a>
+

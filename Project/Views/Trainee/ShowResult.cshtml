@@ -1,0 +1,17 @@
+﻿@model TraineeWithcrsResultSuccesssOrFail
+@{
+    ViewData["Title"] = "ShowResult";
+}
+
+<h1>Show Result</h1>
+<div class="card" style="width:380px;color:@Model.Color;">
+    <div class="card-body" style="margin-left:15px; margin-top:15px">
+        <h5 class="card-title"><strong>Trainee Name : </strong>@Model.TrnName</h5>
+        <ul class="list-unstyled">
+            <li><strong>Course Name : </strong>@Model.CrsName</li>
+            <li>
+                <strong>Degree : </strong>@Model.Degree
+            </li>
+        </ul>
+    </div>
+</div>

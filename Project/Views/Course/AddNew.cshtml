@@ -1,0 +1,39 @@
+﻿@model CourseWithListOfDepartment
+@{
+    ViewData["Title"] = "AddNew";
+    SelectList DeptItems =
+           new SelectList(Model.DeptList, "Id", "Name");
+}
+
+<h1>Add New Course</h1>
+<a href="/course/index" class="btn btn-outline-primary mb-3">BackTo List</a>
+<form method="post" action="/course/SaveNew">
+    <div>
+        <label asp-for="Name" class="my-3"></label>
+        <input asp-for="Name" class="form form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Degree" class="my-3"></label>
+        <input asp-for="Degree" class="form form-control" />
+        <span asp-validation-for="Degree" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="MinDegree" class="my-3"></label>
+        <input asp-for="MinDegree" class="form form-control" />
+        <span asp-validation-for="MinDegree" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Hours" class="my-3"></label>
+        <input asp-for="Hours" class="form form-control" />
+        <span asp-validation-for="Hours" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="DepartmentId" class="my-3"></label>
+        <select asp-for="DepartmentId" asp-items="DeptItems" class="form form-control">
+            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+        </select>
+    </div>
+    <input type="submit" value="Add" class="btn btn-outline-primary my-3" />
+</form>
+<partial name="_ValidationScriptsPartial" />

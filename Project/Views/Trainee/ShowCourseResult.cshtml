@@ -1,0 +1,31 @@
+﻿
+@model List<TraineeWithcrsResultSuccesssOrFail>
+
+@* @foreach (var item in Model)
+{
+    <div>
+        <p style="color: @item.Color; display:inline">@item.TraineeName</p>
+        <span>@item.Degree</span>
+    </div>
+} *@
+
+
+<h1>Display Trainee Result In Specific Course</h1>
+
+
+<table class="table table-bordered table-hover">
+    <tr style="font-size:30px">
+
+        <th>Name</th>
+        <th>Degree</th>
+    </tr>
+
+    @foreach (var trainee in Model)
+    {
+        <tr style="font-size:30px; color: @trainee.Color">
+
+            <td>@trainee.TrnName</td>
+            <td>@trainee.Degree</td>
+        </tr>
+    }
+</table>

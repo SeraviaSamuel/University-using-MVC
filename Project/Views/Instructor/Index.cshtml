@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<Instructor>
+<style>
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+<h1>Instructors</h1>
+<a href="/Instructor/AddNew" class="btn btn-outline-primary mb-3">Add New Instructor</a>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Details</th>
+        <th>Edit</th>
+    </tr>
+    @foreach(Instructor ins in Model)
+    {
+        <tr>
+            <td>@ins.Name</td>
+            <td><img style="width:100px" src="/images/@ins.Image"/></td>
+            <td><a href="/instructor/insdetails/@ins.Id" class="btn btn-outline-primary"> View Details</a></td>
+            <td><a href="/instructor/edit/@ins.Id" class="btn btn-outline-primary"> Edit</a></td>
+        </tr>
+    }
+</table>

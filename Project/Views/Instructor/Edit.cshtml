@@ -1,0 +1,49 @@
+﻿@model InstructorWithListOfDeptAndCourse
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Instructor</h1>
+<a href="/Instructor/index" class="btn btn-outline-primary mb-3">BackTo List</a>
+<form method="post" action="/instructor/SaveEdit/@Model.Id" class="form form-control">
+    <label class="my-3"><strong>Name : </strong></label>
+    <input type="text" name="Name" value="@Model.Name" class="form form-control" />
+    <label class="my-3"><strong>Image : </strong></label>
+    <input type="file" name="Image" value="@Model.Image" class="form form-control" />
+    <label class="my-3"><strong>Salary : </strong></label>
+    <input type="number" name="Salary" value="@Model.Salary" class="form form-control" />
+    <label class="my-3"><strong>Address : </strong></label>
+    <input type="text" name="Address" value="@Model.Address" class="form form-control" />
+    <label class="my-3"><strong>Department : </strong></label>
+    <select name="DepartmentId" class="form form-control">
+        @foreach (var dept in Model.DeptList)
+        {
+            if(dept.Id==Model.CourseId)
+            {
+                <option value="@dept.Id" selected>@dept.Name</option>
+            }
+            else
+            {
+                <option value="@dept.Id">@dept.Name</option>
+            }
+
+        }
+    </select>
+    <label class="my-3"><strong>Course : </strong></label>
+    <select name="CourseId" class="form form-control">
+        @foreach (var crs in Model.CrsList)
+        {
+            if(Model.CourseId == crs.Id)
+            {
+                <option value="@crs.Id" selected>@crs.Name</option>
+            }
+            else
+            {
+                <option value="@crs.Id">@crs.Name</option>
+            }
+            
+        }
+    </select>
+    <input style="margin-top:15px" type="submit" value="Update" class="btn btn-outline-primary" />
+</form>
+

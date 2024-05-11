@@ -1,0 +1,25 @@
+﻿@model CourseWithListOfDepartment
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Course</h1>
+<a href="/course/index" class="btn btn-outline-primary mb-3">BackTo List</a>
+<form method="post" action="/course/saveupdate/@Model.Id" class="form-control form">
+    <label class="my-3"><strong>Name : </strong></label>
+    <input type="text" name="Name" value="@Model.Name" class="form form-control" />
+    <label class="my-3"><strong>Degree : </strong></label>
+    <input type="text" name="Degree" value="@Model.Degree" class="form form-control" />
+    <label class="my-3"><strong>Min Degree : </strong></label>
+    <input type="text" name="MinDegree" value="@Model.MinDegree" class="form form-control" />
+    <label class="my-3"><strong>Hours : </strong></label>
+    <input type="text" name="Hours" value="@Model.Hours" class="form form-control" />
+    <label class="my-3"><strong>Department : </strong></label>
+    <select name="DepartmentId" class="form form-control">
+        @foreach (var dept in Model.DeptList)
+        {
+            <option value="@dept.Id">@dept.Name</option>
+        }
+    </select>
+    <input style="margin-top:15px" type="submit" value="Update" class="btn btn-outline-primary" />
+</form>

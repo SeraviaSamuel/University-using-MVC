@@ -1,0 +1,5 @@
+trainee/ShowResult/3?crsid=3
+/trainee/ShowCourseResult?crsid=4
+trainee/ShowTraineeResult/id=2
+state/SetSession
+state/GetSession

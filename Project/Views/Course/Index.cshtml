@@ -1,0 +1,56 @@
+﻿@model List<Course>
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    td , th {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+<h1>Courses</h1>
+<a href="/Course/AddNew" class="btn btn-outline-primary mb-3">Add New Course</a>
+<form action="/course/search" method="post" class="form-inline mb-3">
+    <div class="input-group">
+        <input type="text" name="word" class="form-control" placeholder="Search" style="width: 100px;">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Hours</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach(var crs in Model)
+    {
+        <tr>
+            <td>@crs.Name</td>
+            <td>@crs.Hours</td>
+            <td>
+                <button onclick="confirmDelete('@crs.Id')" class="btn btn-outline-primary delete-btn">Delete</button>
+            </td>
+            <td>
+                <a href="/course/edit/@crs.Id" class="btn btn-outline-primary"> Edit</a>
+            </td>
+        </tr>
+    }
+</table>
+@section Scripts
+{
+    <script>
+        function confirmDelete(courseId) {
+            if (confirm("Are you sure you want to delete this course?")) {
+                window.location.href = "/course/SaveDelete/" + courseId;
+            } else {
+                window.location.href = "/course/CancelDelete";
+            }
+        }
+    </script>
+}
+
+
